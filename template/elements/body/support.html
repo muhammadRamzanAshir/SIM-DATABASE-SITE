@@ -1,0 +1,39 @@
+{% load static %}
+<section class="support-area section-bg pt-150 pb-150" data-background="{% static "/img/gallery/section_bg03.jpg" %}">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-5">
+                <div class="support-caption">
+                <!-- Section Tittle -->
+                <div class="section-tittle section-tittle5">
+                    <span>{{ support_info.subtitle }}</span>
+                    <h2>{{ support_info.title }}</h2>
+                    <p class="support-details">{{ support_info.description }}</p>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="support-number">
+                    <!-- Single contact -->
+                    <div class="single-contact text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <div class="contact-number">
+                            <span>{{ support_info.phone_number }}</span>
+                        </div>
+                    </div>
+                    <!-- Single contact -->
+                    <div class="single-contact text-center">
+                        <div class="contact-icon">
+                            <i class="far fa-comment"></i>
+                        </div>
+                        <div class="contact-number">
+                            <span>{{ support_info.text_field }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

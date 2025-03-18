@@ -1,0 +1,38 @@
+{% load static %}
+<div class="services-area section-padding30 fix">
+    <div class="container">
+        <!-- Section Tittle -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-tittle text-center mb-100">
+                    <div class="service-item">
+                        <span>{{ services.0.service_heading }}</span>
+                        <h2>{{ services.0.service_subheading  }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="services-wrapper mb-50">
+                    <div class="single-services">
+                        <div class="services-icon">
+                            <span class="{{ service.icon_class }}"></span>
+                        </div>
+                        <div class="services-cap">
+                            <h3><a href="{{ service.link }}">{{ service.title }}</a></h3>
+                            <p>{{ service.description }}</p>
+                            <a href="{{ service.link }}" class="get-btn"><i class="ti-arrow-right"></i> get started</a>
+                        </div>
+                    </div>
+                    <div class="services-shape">
+                        <span>.{{ service.order_number}}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

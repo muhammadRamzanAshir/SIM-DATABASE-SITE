@@ -1,0 +1,93 @@
+{% load static %}
+<div class="our-pricing-area section-padding30 fix">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6">
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- First Tab (Monthly) -->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        {% for plan in monthly_plans %}
+                        <div class="single-pricing mb-30">
+                            <div class="pricing-caption text-center">
+                                <div class="procing-logo">
+                                    {% if plan.image %}
+                                        <img src="{{ plan.image.url }}" alt="{{ plan.title }}">
+                                    {% else %}
+                                        <img src="{% static 'img/icon/roket.png' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <span>${{ plan.price }}</span>
+                                <div class="pricing-listing">
+                                    <ul>
+                                        {% for feature in plan.get_features_list %}
+                                            <li>{{ feature }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn white-btn">Get the plan</a>
+                            </div>
+                            <!-- pricing Shape -->
+                            <div class="pricing-shape">
+                                <img class="pricing1" src="{% static 'img/gallery/procing-shape1.png' %}" alt="">
+                                <img class="pricing2" src="{% static 'img/gallery/procing-shape2.png' %}" alt="">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Second Tab (Yearly) -->
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        {% for plan in yearly_plans %}
+                        <div class="single-pricing mb-30">
+                            <div class="pricing-caption text-center">
+                                <div class="procing-logo">
+                                    {% if plan.image %}
+                                        <img src="{{ plan.image.url }}" alt="{{ plan.title }}">
+                                    {% else %}
+                                        <img src="{% static 'img/icon/roket.png' %}" alt="">
+                                    {% endif %}
+                                </div>
+                                <span>${{ plan.price }}</span>
+                                <div class="pricing-listing">
+                                    <ul>
+                                        {% for feature in plan.get_features_list %}
+                                            <li>{{ feature }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn white-btn">Get the plan</a>
+                            </div>
+                            <!-- pricing Shape -->
+                            <div class="pricing-shape">
+                                <img class="pricing1" src="{% static 'img/gallery/procing-shape1.png' %}" alt="">
+                                <img class="pricing2" src="{% static 'img/gallery/procing-shape2.png' %}" alt="">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing-caption -->
+            <div class="col-lg-6 col-md-6">
+                <!-- Section Tittle -->
+                <div class="section-tittle section-tittle3">
+                    <span>Our Best Services</span>
+                    <h2>Our Pricing</h2>
+                    <p class="pt-20 pb-40">Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+
+                <!-- Tab Button -->
+                <div class="pricing-button">                                         
+                    <nav>                                                                     
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Monthly</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Yearly</a>
+                        </div>
+                    </nav>
+                </div>
+                <!-- End Tab Button -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+{% load static %}
+<section class="search-domain-area section-bg pt-140 pb-140" data-background="{% static 'img/gallery/section_bg02.jpg' %}">
+    <div class="container">
+        <div class="row align-items-end mb-80">
+            <div class="col-xl-4">
+                <!-- Section Title -->
+                <div class="section-tittle section-tittle2">
+                    <span>{{ section_title.title }}</span>
+                    <h2>{{ section_title.subtitle }}</h2>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <!-- Search Box -->
+                <form id="query-form" class="search-box">
+                    {% csrf_token %}
+                    <div class="input-form w-78">
+                        <input type="text" id="query" placeholder="Search your domain name here" required>
+                    </div>
+                    <div class="search-form">
+                        <button type="submit">Search Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Results Section -->
+        <div id="results"></div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#query-form').on('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            let query = $('#query').val().trim();
+            let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+            if (query === '') {
+                alert('Please enter a search query.');
+                return;
+            }
+
+            $.ajax({
+                url: '/get_mobile_details/',
+                type: 'POST',
+                headers: { 'X-CSRFToken': csrfToken },
+                data: { query: query },
+                success: function (response) {
+                    let resultsDiv = $('#results');
+                    resultsDiv.empty();
+
+                    if (response.data && response.data.length) {
+                        let table = `<div class="table-container">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>${Object.keys(response.data[0]).map(key => `<th>${key}</th>`).join('')}
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+
+                        response.data.forEach((row, index) => {
+                            table += '<tr>';
+                            Object.values(row).forEach(value => {
+                                table += `<td>${value}</td>`;
+                            });
+                            table += `<td>
+                                        <button class="genric-btn danger " onclick="savePhoneDetail(${index})">Delete</button>
+                                      </td>
+                                  </tr>`;
+                        });
+
+                        table += '</tbody></table></div>';
+                        resultsDiv.append(table);
+                    } else {
+                        resultsDiv.append('<p class="text-warning">No data found.</p>');
+                    }
+                },
+                error: function (xhr) {
+                    $('#results').html(`<p style="color: red;">Error: ${xhr.responseJSON?.error || 'Something went wrong!'}</p>`);
+                }
+            });
+        });
+    });
+
+    function savePhoneDetail(index) {
+        // Get the data of the selected row
+        const row = $(`#results table tbody tr:eq(${index}) td`);
+        const phoneDetail = {
+            number: row.eq(0).text(),
+            name: row.eq(1).text(),
+            father_name: row.eq(2).text(),
+            cnic: row.eq(3).text(),
+            address: row.eq(4).text(),
+        };
+        
+        // Send the data to the server to save it (you can modify the URL and logic to save in DB)
+        $.ajax({
+            url: '/save_phone_detail/', // Your Django view to save the data
+            type: 'POST',
+            data: {
+                phoneDetail: JSON.stringify(phoneDetail),
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+            },
+            success: function(response) {
+                alert('Phone detail saved successfully!');
+            },
+            error: function(xhr, status, error) {
+                alert('Error saving phone detail!');
+            }
+        });
+    }
+</script>

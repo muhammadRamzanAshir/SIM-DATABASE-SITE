@@ -1,0 +1,27 @@
+{% load static %}
+<section class="work-company">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <!-- Section Tittle -->
+                <div class="section-tittle section-tittle3">
+                    <span>Trusted by Industry Leaders</span>
+                    <h2>Our Partners in Innovation and Excellence</h2>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="logo-area">
+                    <div class="row">
+                        {% for partner in partners %}
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="single-logo">
+                                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

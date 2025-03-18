@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include "elements/head/header.html" %}
+    </head>
+<body>
+    {% comment %}
+        {% include "elements/body/loading.html" 
+    {% endcomment %}
+    {% include "elements/body/header.html" %}
+    <main>
+        {% include "elements/body/search.html" %}
+        {% comment %} {% include "elements/body/slider.html" %} {% endcomment %}
+        {% comment %} {% include "elements/body/service.html" %} {% endcomment %}
+        {% comment %} {% include "elements/body/about.html" %} {% endcomment %}
+        {% comment %} {% include "elements/body/parteners.html" %} {% endcomment %}
+        {% include "elements/body/plan.html" %}
+    </main>
+    {% include "elements/body/footer.html" %}
+    {% comment %} {% include "elements/body/backButtonTop.html" %} {% endcomment %}
+    {% include "elements/scripts/script.html" %}
+
+</body>
+</html>

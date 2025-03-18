@@ -1,0 +1,56 @@
+{% load static %}
+<header>
+    <!-- Header Start -->
+    <div class="header-area header-transparent">
+        <div class="main-header">
+            <div class="header-bottom  header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-1 col-md-1">
+                            <div class="logo">
+                                <a href="#"><img src="{% static "img/logo/loder.jpg" %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-8">
+                            <!-- Main-menu -->
+                            <div class="main-menu f-right d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        {% for item in navbar_items %}
+                                            <li class="bold">
+                                                <a href="{{ item.url }}">{{ item.name }}</a>
+                            
+                                                {% if item.submenus.all %}
+                                                    <ul class="submenu">
+                                                        {% for submenu in item.submenus.all %}
+                                                            <li><a href="{{ submenu.url }}">{{ submenu.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </nav>
+                            </div>                            
+                        </div>             
+                        <div class="col-xl-2 col-lg-3 col-md-3">
+                            <div class="header-right-btn f-right d-none d-lg-block">
+                                <a href="#" class="btn header-btn">
+                                    <i class="fa fa-search"></i>&nbspCHECK PHONE DETAILS
+                                </a>
+                                {% comment %} <a href="#" class="btn header-btn">
+                                    LOGIN
+                                </a> {% endcomment %}
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</header>

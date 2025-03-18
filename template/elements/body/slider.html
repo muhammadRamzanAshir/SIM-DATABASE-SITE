@@ -1,0 +1,45 @@
+{% load static %}
+<div class="slider-area slider-bg ">
+    <div class="slider-active dot-style">
+        {% for slide in sliders %}
+        <div class="single-slider d-flex align-items-center slider-height ">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-9 ">
+                        <div class="hero__caption">
+                            <h1 data-animation="fadeInLeft" data-delay=".3s">{{ slide.title }}</h1>
+                            <p data-animation="fadeInLeft" data-delay=".6s">{{ slide.description }}</p>
+                            <!-- Slider btn -->
+                            <div class="slider-btns">
+                                <!-- Hero-btn -->
+                                <a data-animation="fadeInLeft" data-delay="1s" href="{{ slide.button_link }}" class="btn radius-btn">
+                                    {{ slide.button_text }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero__img d-none d-lg-block f-right">
+                            <img src="{{ slide.image.url }}" alt="" data-animation="fadeInRight" data-delay="1.5s">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="slider-shape d-none d-lg-block">
+        <img class="slider-shape1" src="{% static "/img/hero/top-left-shape.png" %}" alt="">
+        <img class="slider-shape2" src="{% static "/img/hero/right-top-shape.png" %}" alt="">
+        <img class="slider-shape3" src="{% static "/img/hero/left-botom-shape.png" %}" alt="">
+    </div>
+</div>
+    <!-- slider Social -->
+    <div class="slider-social d-none d-md-block">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fas fa-globe"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+
+</div>

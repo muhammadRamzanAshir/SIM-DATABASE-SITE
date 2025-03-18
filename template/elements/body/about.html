@@ -1,0 +1,25 @@
+{% load static %}
+<section class="all-starups-area section-padding2">
+    <!-- left Contents -->
+    <div class="starups">
+        <div class="starups-details">
+            <!-- Section Title -->
+            <div class="section-tittle section-tittle3">
+                <span>{{ about_content.title }}</span>
+                <h2>{{ about_content.subtitle }}</h2>
+            </div>
+            <!-- Details Caption -->
+            <div class="details-caption">
+                <p>{{ about_content.description1 }}</p>
+                <p>{{ about_content.description2 }}</p>
+            </div>
+            {% if about_content.button_text %}
+                <a href="#" class="btn">{{ about_content.button_text }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Right Contents -->
+    <div class="starups-img">
+        <img src="{{ about_content.image.url }}" alt="About Us Image">
+    </div>
+</section>
